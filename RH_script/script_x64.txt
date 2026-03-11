@@ -1,0 +1,8 @@
+[FILENAMES]
+Open=  weaselx64.dll
+Save=  weaselx64.dll
+Log=   CONSOLE
+
+[COMMANDS]
+-addreplace zh.ico, ICONGROUP, 102, 1033
+-addreplace en.ico, ICONGROUP, 101, 1033
