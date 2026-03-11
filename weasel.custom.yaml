@@ -1,0 +1,32 @@
+customization:
+  distribution_code_name: Weasel
+  distribution_version: 0.17.4
+  generator: "Weasel::UIStyleSettings"
+  modified_time: "Tue Mar 10 21:40:51 2026"
+  rime_version: 1.13.1
+patch:
+  show_notifications: false
+  style/hover_type: semi_hilite
+  style/color_scheme: microsoft_dark
+  style/color_scheme_dark: microsoft_dark
+  style/font_point: 12
+  style/layout/corner_radius: 6
+  style/layout/round_corner: 6
+  style/layout/border_width: 0
+  style/layout/hilite_padding: 4
+  style/mark_text: ""
+  preset_color_schemes/microsoft_dark/name: Microsoft Dark
+  preset_color_schemes/microsoft_dark/author: Custom
+  preset_color_schemes/microsoft_dark/text_color: 0xffffff
+  preset_color_schemes/microsoft_dark/label_color: 0xffffff
+  preset_color_schemes/microsoft_dark/back_color: 0x2c2c2c
+  preset_color_schemes/microsoft_dark/border_color: 0x2c2c2c
+  preset_color_schemes/microsoft_dark/candidate_text_color: 0xffffff
+  preset_color_schemes/microsoft_dark/candidate_back_color: 0x2c2c2c
+  preset_color_schemes/microsoft_dark/candidate_border_color: 0x2c2c2c
+  preset_color_schemes/microsoft_dark/hilited_text_color: 0xffffff
+  preset_color_schemes/microsoft_dark/hilited_back_color: 0x383838
+  preset_color_schemes/microsoft_dark/hilited_candidate_text_color: 0xffffff
+  preset_color_schemes/microsoft_dark/hilited_candidate_back_color: 0x383838
+  preset_color_schemes/microsoft_dark/hilited_candidate_border_color: 0x383838
+  preset_color_schemes/microsoft_dark/hilited_mark_color: 0xffc24c

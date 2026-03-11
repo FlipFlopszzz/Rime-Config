@@ -1,0 +1,4 @@
+patch:
+  "switches/@0/reset": 1 # switch 列表的第0个开关（ascii_mode）默认选中“英文”
+  "schema/icon": zh.ico
+  "schema/ascii_icon": en.ico

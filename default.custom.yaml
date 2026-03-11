@@ -1,0 +1,13 @@
+customization:
+  distribution_code_name: Weasel
+  distribution_version: 0.17.4
+  generator: "Rime::SwitcherSettings"
+  modified_time: "Tue Mar 10 20:34:04 2026"
+  rime_version: 1.13.1
+patch:
+  schema_list:
+    - { schema: rime_ice }
+  switcher/hotkeys:
+    - F4
+  punctuator/half_shape/_: _
+  punctuator/full_shape/_: _
