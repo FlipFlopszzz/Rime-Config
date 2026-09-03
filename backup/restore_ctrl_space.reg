@@ -1,0 +1,20 @@
+Windows Registry Editor Version 5.00
+
+; 恢复系统默认的 Ctrl+Space 输入法开关热键（撤销禁用操作）
+[HKEY_CURRENT_USER\Control Panel\Input Method\Hot Keys\00000010]
+"Key Modifiers"=hex:02,c0,00,00
+"Virtual Key"=hex:20,00,00,00
+
+[HKEY_CURRENT_USER\Control Panel\Input Method\Hot Keys\00000070]
+"Key Modifiers"=hex:02,c0,00,00
+"Virtual Key"=hex:20,00,00,00
+
+[HKEY_USERS\.DEFAULT\Control Panel\Input Method\Hot Keys\00000010]
+"Key Modifiers"=hex:02,c0,00,00
+"Target IME"=hex:00,00,00,00
+"Virtual Key"=hex:20,00,00,00
+
+[HKEY_USERS\.DEFAULT\Control Panel\Input Method\Hot Keys\00000070]
+"Key Modifiers"=hex:02,c0,00,00
+"Target IME"=hex:00,00,00,00
+"Virtual Key"=hex:20,00,00,00

@@ -2,3 +2,8 @@ patch:
   "switches/@0/reset": 1 # switch 列表的第0个开关（ascii_mode）默认选中“英文”
   "schema/icon": zh.ico
   "schema/ascii_icon": en.ico
+  pin_cand_filter/+:
+    - 'na li	那里 哪里'
+    - 'na ge	那个 哪个'
+    - 'na xie	那些 哪些'
+    - 'na bian	那边 哪边'
