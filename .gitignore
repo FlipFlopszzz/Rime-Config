@@ -27,6 +27,9 @@ go.work
 
 *private*
 
+# 语法模型（400MB+，超出 GitHub 单文件限制，需手动下载放置）
+*.gram
+
 rime_console
 rime_deployer
 rime_patch

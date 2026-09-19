@@ -6,7 +6,7 @@ customization:
   rime_version: 1.13.1
 patch:
   schema_list:
-    - { schema: rime_ice }
+    - { schema: wanxiang }
   switcher/hotkeys: []
   punctuator/half_shape/_: _
   punctuator/full_shape/_: _

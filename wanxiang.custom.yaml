@@ -1,0 +1,117 @@
+# 万象拼音个人定制（放在用户目录根部，更新万象方案不会覆盖此文件）
+patch:
+  # ── 释放 ` 和 / 为普通标点，直接上屏 ──
+  # 从编码字符集中移除 ` 和 /（以及 initials 中的 /），
+  # 随之失效：/ 时间指令、/sym /emoji 超级符号、/flypy 等输入类型切换。
+  # o 前缀指令（如 osj）不受影响。
+  speller/alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA1234567890;\
+  speller/initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
+
+  # 反引号、斜杠直接上屏（{commit:} 形式即无候选直出；纯字符串形式会弹「(半角)」候选）
+  punctuator:
+    half_shape:
+      "`": { commit: "`" }
+      "/": { commit: "/" }
+
+  # 禁用 Lua 层（super_lookup.lua）的 ` 反查引导，空字符串即关闭
+  wanxiang_lookup/key: ""
+
+  # ── 彻底移除反查功能链路（含「〔反查：拆分|笔画〕」提示的来源）──
+  # 同时重写 recognizer 模式表：删除所有以 ` 和 / 开头的模式（recognizer 处理器
+  # 在 punctuator 之前，这些模式会抢先拦截 ` / 键送入编码区，导致标点弹候选）
+  # 保留：U=Unicode、R=金额大写、V=计算器、N=日期、email、url
+  recognizer/patterns:
+    unicode: "^U([0-9A-Fa-f]*|[xXhH][0-9A-Fa-f]*|[dD][0-9]*|[bB][01]*|[oO][0-7]*|0[xX][0-9A-Fa-f]*|0[dD][0-9]*|0[bB][01]*|0[oO][0-7]*|\\+[0-9A-Fa-f]*|c.*)$"
+    number: "^R(-|-?[0-9]+[.:]?[0-9]*)$"
+    calculator: "^V.*$"
+    email: "^[A-Za-z][-_.0-9A-Za-z]*@.*$"
+    url: "^(www[.]|https?:|ftp[.:]|mailto:|file:).*$"
+    yr1: "^N0[1-9]?0?[1-9]?"
+    yr2: "^N1[02]?0?[1-9]?"
+    yr3: "^N0[1-9]?[1-2]?[1-9]?"
+    yr4: "^N1[02]?[1-2]?[1-9]?"
+    yr5: "^N0[1-9]?3?[01]?"
+    yr6: "^N1[02]?3?[01]?"
+    nyr1: "^N19?[0-9]?[0-9]?[0-1]?[0-9]?[0-9]?[0-9]?"
+    nyr2: "^N20?[0-9]?[0-9]?[0-1]?[0-9]?[0-9]?[0-9]?"
+    nyr_diff: "^N(19|20)[0-9]{6}-[0-9]{0,8}$"
+  wanxiang_reverse/tips: ""
+  engine/segmentors:
+    - ascii_segmentor
+    - matcher
+    - abc_segmentor
+    - affix_segmentor@add_user_dict
+    - punct_segmentor
+    - fallback_segmentor
+  engine/translators:
+    - punct_translator
+    - script_translator
+    - lua_translator@*wanxiang.version_display
+    - lua_translator@*wanxiang.set_schema
+    - lua_translator@*wanxiang.shijian
+    - lua_translator@*wanxiang.unicode_conversion*T
+    - lua_translator@*wanxiang.number_conversion
+    - lua_translator@*wanxiang.super_calculator
+    - lua_translator@*wanxiang.random_tools
+    - lua_translator@*wanxiang.input_statistics
+    - lua_translator@*wanxiang.super_symbols
+    - lua_translator@*wanxiang.super_english*T
+    - table_translator@wanxiang_mixedcode
+    - script_translator@add_user_dict
+    - script_translator@user_dict_set
+
+  # 简繁开关：原为 4 态轮询组 [简体,通繁,港繁,臺繁]（toggle 一下只走一步），
+  # 改为标准二态开关，Ctrl+分号即可一键简繁互切；港繁/臺繁滤镜随之停用
+  "switches/@7":
+    name: s2t
+    states: [简体, 通繁]
+
+  # ── 快捷键（全量重写，含全局继承项；已删除 Ctrl+Shift+3/4 切标点与简繁）──
+  key_binder/bindings:
+    # 翻页 - =
+    - {accept: minus, send: Page_Up, when: has_menu}
+    - {accept: equal, send: Page_Down, when: has_menu}
+    # 释放 Ctrl+k 给 Lua 调序使用
+    - {accept: "Control+k", toggle: xxxxx, when: composing}
+    # 小键盘映射
+    - {accept: KP_0, send: 0, when: composing}
+    - {accept: KP_1, send: 1, when: composing}
+    - {accept: KP_2, send: 2, when: composing}
+    - {accept: KP_3, send: 3, when: composing}
+    - {accept: KP_4, send: 4, when: composing}
+    - {accept: KP_5, send: 5, when: composing}
+    - {accept: KP_6, send: 6, when: composing}
+    - {accept: KP_7, send: 7, when: composing}
+    - {accept: KP_8, send: 8, when: composing}
+    - {accept: KP_9, send: 9, when: composing}
+    - {accept: KP_Decimal, send: period, when: composing}
+    - {accept: KP_Multiply, send: asterisk, when: composing}
+    - {accept: KP_Add, send: plus, when: composing}
+    - {accept: KP_Subtract, send: minus, when: composing}
+    - {accept: KP_Divide, send: slash, when: composing}
+    - {accept: KP_Enter, send: Return, when: composing}
+    # 切换中英
+    - {accept: "Control+space", toggle: ascii_mode, when: always}
+    # Alt+←/→ 光标移到上/下一个拼音
+    - {accept: "Alt+Left", send: "Shift+Left", when: composing}
+    - {accept: "Alt+Right", send: "Shift+Right", when: composing}
+    # Ctrl+W 删除一个音节
+    - {accept: "Control+w", send: "Control+BackSpace", when: composing}
+    # 功能开关
+    - {accept: "Control+e", toggle: chinese_english, when: has_menu}
+    - {accept: "Control+a", toggle: tone_hint, when: has_menu}
+    - {accept: "Control+s", toggle: tone_display, when: has_menu}
+    - {accept: "Control+t", toggle: super_tips, when: has_menu}
+    - {accept: "Control+g", toggle: charset_filter, when: has_menu}
+    - {accept: "Control+g", toggle: charset_filter, when: composing}
+    # 切换到下一个方案
+    - {accept: "Shift+space", select: .next, when: always}
+    # Tab 跳音节 / Ctrl+Tab 辅码连续上屏
+    - {accept: Tab, send: "Control+Right", when: has_menu}
+    - {accept: Tab, send: "Control+Right", when: composing}
+    - {accept: "Control+Tab", send_sequence: "{Home}{Shift+Right}{1}{Shift+Right}", when: composing}
+    # Shift+回车：带声调上屏
+    - {accept: "Shift+Return", send_sequence: "{option:tone_display=true}{Shift+Return}{option:tone_display=false}"}
+    # ── 个人快捷键 ──
+    - {accept: "Control+slash", toggle: ascii_punct, when: always}      # Ctrl+/ 切换中英标点
+    - {accept: "Control+semicolon", toggle: s2t, when: always}          # Ctrl+; 切换简繁
