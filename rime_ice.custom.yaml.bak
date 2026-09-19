@@ -8,7 +8,3 @@ patch:
     - 'na xie	那些 哪些'
     - 'na bian	那边 哪边'
   punctuator/digit_separator_action: commit # 数字后按 . , : 直接上屏半角，不再弹"半角/全角"候选
-  # Auto-word: allow new phrases to be learned into user dict
-  translator/enable_encoder: true
-  translator/enable_user_dict: true
-  translator/enable_sentence: true
