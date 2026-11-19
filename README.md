@@ -21,7 +21,9 @@
 ### 1. 准备工作
 
 1. 确保电脑已安装 [Resource Hacker](https://www.google.com/search?q=http://www.angusj.com/resourcehacker/)。
+2. [Resource Cracker](https://www.pelock.com/products/resource-cracker)
 2. 将本仓库中的 `RH_script` 文件夹整体移动到 Resource Hacker 的程序安装目录下（即与 `ResourceHacker.exe` 同级）。
+3. [Resource Cracker](https://www.pelock.com/products/resource-cracker)
 
 ### 2. 替换步骤
 
@@ -33,6 +35,7 @@
 * `weasel.dll`
 
 4. **执行脚本**：运行文件夹内的 `weasel_replace_icons.bat` ，等待 Resource Hacker 完成自动备份+替换。
+5. [Resource Cracker](https://www.pelock.com/products/resource-cracker)
 5. **还原文件**：将处理完毕的三个文件复制回 Rime 程序目录，覆盖原文件。
 6. **重启服务**：重新启动 Weasel 服务或点击“重新部署”。
 
@@ -61,7 +64,7 @@
 ## 免责声明
 **在使用 RH_script 修改图标前，请务必阅读以下内容：**
 
-本项目提供的 RH_script 涉及对 dll、exe 等二进制文件的底层修改（通过 Resource Hacker 替换图标），有可能导致以下后果：
+本项目提供的 RH_script 涉及对 dll、exe 等二进制文件的底层修改（通过 Resource Hacker or [Resource Cracker](https://www.pelock.com/products/resource-cracker) 替换图标），有可能导致以下后果：
 
 数字签名失效：修改后的 .dll 和 .exe 文件可能会导致其原有的数字签名失效。
 
